@@ -1,6 +1,0 @@
-[
-    {
-        "args": "*/15 0 1,15 * 1-5 /usr/bin/find",
-        "stdout": "minute\t\t0 15 30 45\nhour\t\t0\nday of month\t1 15\nmonth\t\t1 2 3 4 5 6 7 8 9 10 11 12\nday of week\t1 2 3 4 5\ncommand\t\t/usr/bin/find"
-    }
-]
