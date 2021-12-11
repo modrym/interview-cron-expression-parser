@@ -42,12 +42,12 @@ Some unit tests are written as doctests inside the module sources.
 
 Other tests require "pytest" module.
 
-Install requirements:
+### Install test requirements
 ```
 ~$ pip install -r tests/test_requirements.txt
 ```
 
-Run tests:
+### Run tests
 ```text
 ~$ python -m pytest tests
 ```
