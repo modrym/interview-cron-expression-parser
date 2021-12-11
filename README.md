@@ -21,12 +21,41 @@ command        /usr/bin/find
 
 ## Requirements
 
-The script requires Python. Tested with Python 3.10.1.
+The script requires Python in version at least 3.7. Recommended version: 3.10.
+
+### Checking if Python 3 is installed
+
+Run this command:
+
+```text
+~$ python3 --version
+```
+
+The output should look like this:
+
+```text
+Python 3.10.1
+```
+
+### Installing Python 3
+
+If the command does not output the version and instead shows an error,
+you need to install Python.
+
+#### Ubuntu
+```text
+~$ sudo apt install python3.10
+```
+
+#### macOS
+Please download the package from here:
+
+https://www.python.org/downloads/macos/
 
 ## Running using Docker
 
-The script can be run with Docker. This way you do not have to worry about
-installing Python.
+The script can be run with Docker. This way, if you have Docker, you do not
+have to worry about installing Python.
 
 ```
 ~$ docker build -t cron-parser .
