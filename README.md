@@ -35,3 +35,19 @@ installing Python.
 
 The user needs to be added to "docker" group in order to run those commands.
 Otherwise, the command needs to be run as root.
+
+## Testing
+
+Some unit tests are written as doctests inside the module sources.
+
+Other tests require "pytest" module.
+
+Install requirements:
+```
+~$ pip install -r tests/test_requirements.txt
+```
+
+Run tests:
+```text
+~$ python -m pytest tests
+```
