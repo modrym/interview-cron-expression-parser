@@ -134,7 +134,7 @@ def parse_cron_expression(expr: str) -> str:
     """
     values = expr.split()
 
-    if len(values) < 6:
+    if len(values) <= len(VALUE_RANGES):
         raise ValueError('The number of fields is invalid. Available fields '
                          'are: {}, command'.format(', '.join(VALUE_LABELS)))
 
