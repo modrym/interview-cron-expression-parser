@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 
 VALUE_REGEX = re.compile(r'''
@@ -22,7 +23,7 @@ VALUE_LABELS = ('minute', 'hour', 'day of month', 'month', 'day of week')
 VALUE_RANGES = ((0, 59), (0, 59), (1, 31), (1, 12), (1, 7))
 
 
-def parse_single_value(value: str, vmin: int, vmax: int) -> list[int]:
+def parse_single_value(value: str, vmin: int, vmax: int) -> List[int]:
     """
     Parse single element of cron expression.
 
