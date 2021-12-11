@@ -11,6 +11,6 @@ if __name__ == '__main__':
 
     from cronparser.__main__ import main
 
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main())
 
 
