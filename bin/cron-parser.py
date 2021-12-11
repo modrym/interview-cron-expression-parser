@@ -5,7 +5,7 @@ import sys
 
 
 if __name__ == '__main__':
-    # just to make sure it will found the module
+    # just to make sure the module can be found
     path = pathlib.Path(__file__)
     sys.path.append(str(path.parents[1]))
 
