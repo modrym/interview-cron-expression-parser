@@ -8,7 +8,9 @@ def setup_argparse():
     parser = argparse.ArgumentParser(description='Cron Expression parser.')
 
     parser.add_argument('expression', type=str, metavar='EXPRESSION',
-                        help='Full cron expression to parse (single line).')
+                        help='Full cron expression to parse (single line). '
+                             'Fields: minute, hour, day of month, month, '
+                             'day of week, command')
 
     return parser.parse_args()
 
