@@ -2,7 +2,8 @@ import subprocess
 from typing import Union
 
 
-def run(executable: list[str], arg: Union[str, list[str]], verify: bool=True):
+def run(executable: list[str], arg: Union[str, list[str]],
+        verify: bool = True):
     if isinstance(arg, str):
         arg = [arg]
 

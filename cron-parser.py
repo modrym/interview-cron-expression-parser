@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
-import pathlib
+import os
 import sys
 
 
 if __name__ == '__main__':
     # just to make sure the module can be found
-    path = pathlib.Path(__file__)
-    sys.path.append(str(path.parents[1]))
+    sys.path.append(str(os.path.dirname(__file__)))
 
     from cronparser.__main__ import main
 
