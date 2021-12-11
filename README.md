@@ -57,10 +57,17 @@ https://www.python.org/downloads/macos/
 The script can be run with Docker. This way, if you have Docker, you do not
 have to worry about installing Python.
 
-```
+Build the image (run only once):
+```text
 ~$ docker build -t cron-parser .
+```
+
+The image is now available to be used:
+```text
 ~$ docker run --rm cron-parser "*/15 0 1,15 * 1-5 /usr/bin/find"
 ```
+Make sure to use "--rm" option to clean redundant container files after
+running the command.
 
 The user needs to be added to "docker" group in order to run those commands.
 Otherwise, the command needs to be run as root.
