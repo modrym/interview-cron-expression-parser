@@ -20,7 +20,7 @@ VALUE_REGEX = re.compile(r'''
 
 
 VALUE_LABELS = ('minute', 'hour', 'day of month', 'month', 'day of week')
-VALUE_RANGES = ((0, 59), (0, 59), (1, 31), (1, 12), (1, 7))
+VALUE_RANGES = ((0, 59), (0, 24), (1, 31), (1, 12), (1, 7))
 
 
 def parse_single_value(value: str, vmin: int, vmax: int) -> List[int]:
@@ -47,6 +47,8 @@ def parse_single_value(value: str, vmin: int, vmax: int) -> List[int]:
     [1, 6, 7, 11, 13, 16, 17, 19]
     >>> parse_single_value('3/5', 0, 15)
     [3, 8, 13]
+    >>> parse_single_value('5-1', 0, 8)
+    [0, 1, 5, 6, 7, 8]
     """
     value_split = value.split(',')
 
@@ -72,17 +74,19 @@ def parse_single_value(value: str, vmin: int, vmax: int) -> List[int]:
             if not 1 <= step <= max_step:
                 raise ValueError('The number /{} must be '
                                  'between 1 and {}'.format(step, max_step))
+        else:
+            step = 1
 
         value = match.group(1).split('-')
 
-        try:
+        second_num = None
+
+        if len(value) == 2:
             second_num = int(value[1])
 
             if not vmin <= second_num <= vmax:
                 raise ValueError('Value {} must be between '
                                  '{} and {}'.format(second_num, vmin, vmax))
-        except IndexError:
-            second_num = None
 
         first_num = value[0]
 
@@ -97,20 +101,16 @@ def parse_single_value(value: str, vmin: int, vmax: int) -> List[int]:
                                  '{} and {}'.format(first_num, vmin, vmax))
 
         if second_num and second_num < first_num:
-            raise ValueError('First number ({}) must be smaller '
-                             'than the second ({})'.format(first_num,
-                                                           second_num))
+            result_set |= set(range(first_num, vmax + 1, step))
+            result_set |= set(range(vmin, second_num + 1, step))
+        else:
+            if second_num is None:
+                if step > 1:
+                    second_num = vmax
+                else:
+                    second_num = first_num
 
-        if second_num is None:
-            if step:
-                second_num = vmax
-            else:
-                second_num = first_num
-
-        if not step:
-            step = 1
-
-        result_set |= set(range(first_num, second_num + 1, step))
+            result_set |= set(range(first_num, second_num + 1, step))
 
     return sorted(result_set)
 
